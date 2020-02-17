@@ -2,7 +2,7 @@ module.exports = function(options, {scriptName, run}) {
 	let { __, cron, log, config, mongo, minio } = options;
 
 	let prefix = `RUN.${scriptName}`
-	let schedule = config.DEBUG ? '*/10 * * * * *' : '*/30 * * * *'
+	let schedule = config.DEBUG ? '*/10 * * * * *' : '*/2 * * * *'
 
 	cron.schedule(schedule, () => {
 		run(scriptName, deleteImages)

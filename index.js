@@ -54,7 +54,7 @@
 	/* Mongo */
 	const mongo = await require(__.path('granny-server-backend/src/mongo/_load'))(initModules);
 
-	let dataFile = __.path('data/stats.js')
+	let dataFile = __.path('data/stats.json')
 	let initStats =  await getState(dataFile)
 
 	_.assign(initModules, { mongo, minio, initStats });

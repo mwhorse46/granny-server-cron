@@ -9,12 +9,12 @@ WORKDIR /home/node/app
 
 COPY package*.json ./
 
-RUN git submodule update --init
-
 USER node
 
 RUN npm install
 
 COPY --chown=node:node . .
 
-CMD [ "node", "index.js" ]
+RUN git submodule update --init
+
+CMD [ "npm", "start" ]

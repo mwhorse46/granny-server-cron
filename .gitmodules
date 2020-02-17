@@ -1,0 +1,3 @@
+[submodule "granny-server-backend"]
+	path = granny-server-backend
+	url = https://github.com/mrspartak/granny-server-backend

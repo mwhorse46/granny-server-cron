@@ -1,0 +1,34 @@
+{
+  "name": "cdn-image-api-cron",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env DEBUG=1 nodemon ./index.js",
+    "start": "node ./index.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged --pattern \"**/*.*(js|jsx)\""
+    }
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "minio": "^7.0.13",
+    "moment": "^2.24.0",
+    "mongoose": "^5.9.1",
+    "mongoose-autorefs": "^1.0.5",
+    "mongoose-plugin-autoinc": "^1.1.9",
+    "mongoose-unique-validator": "^2.0.3",
+    "node-cron": "^2.0.3"
+  },
+  "devDependencies": {
+    "cross-env": "^6.0.3",
+    "husky": "^4.2.3",
+    "nodemon": "^2.0.2",
+    "prettier": "1.19.1",
+    "pretty-quick": "^2.0.1"
+  }
+}

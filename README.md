@@ -7,7 +7,7 @@
 [![Latest Github tag](https://img.shields.io/github/v/tag/mrspartak/granny-server-cron?sort=date&style=for-the-badge "Latest Github tag")](https://github.com/mrspartak/granny-server-cron/releases "Latest Github tag")
 
 ## Ecosystem
-![image](https://user-images.githubusercontent.com/993910/74651014-fcb53d80-5193-11ea-997a-b1f394201922.PNG)
+![image](https://user-images.githubusercontent.com/993910/74678258-8f250380-51cb-11ea-9b5e-1640e713380e.PNG)
 
 [granny-server-backend](https://github.com/mrspartak/granny-server-backend "granny-server-backend") - Backend service with API exposed to upload and serve/manipulate images  
 [granny-js-client](https://github.com/mrspartak/granny-js-client "granny-js-client") - Client library that works both in nodejs and browser. Makes API calls easier  

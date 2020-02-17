@@ -1,7 +1,4 @@
-FROM node:12.14.1-alpine
-
-RUN apk update && apk upgrade && \
-    apk add --no-cache bash git openssh
+FROM node:12.16.0-alpine
 
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
@@ -14,7 +11,5 @@ USER node
 RUN npm install --production
 
 COPY --chown=node:node . .
-
-RUN ls -la && cat .git/HEAD && git submodule update --init
 
 CMD [ "npm", "start" ]

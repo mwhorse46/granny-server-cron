@@ -17,7 +17,7 @@ COPY --chown=node:node . .
 
 USER root
 
-RUN ls -la && git submodule update --init
+RUN ls -la && git submodule update --init /home/node/app/
 
 USER node
 

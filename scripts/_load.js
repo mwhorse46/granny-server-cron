@@ -1,7 +1,7 @@
 module.exports = async function(options) {
-	let { __, _, log } = options;
+	let { __, _, log, initStats } = options;
 
-	var stats = {}
+	var stats = initStats
 
 	async function run(scriptName, fn) {
 		if(!stats[scriptName]) 

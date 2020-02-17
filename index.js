@@ -53,11 +53,30 @@
 
 	/* Mongo */
 	const mongo = await require(__.path('granny-server-backend/src/mongo/_load'))(initModules);
-	_.assign(initModules, { mongo, minio });
 
+	let dataFile = __.path('data/stats.js')
+	let initStats =  await getState(dataFile)
+
+	_.assign(initModules, { mongo, minio, initStats });
 
 	/* Script modules */
 	let stats = await require(__.path('scripts/_load'))(initModules);
 
-	//serve stats.json
+	setInterval(async () => {
+		await saveState(dataFile, stats)
+	}, 10000)
+
+	async function getState(dataFile) {
+		try {
+			let data = await fs.readFile(dataFile)
+			return JSON.parse(data)
+		} catch(ex) {
+			console.log('getState.ex', ex.message)
+			return {}
+		}
+	}
+
+	async function saveState(dataFile, state) {
+		await fs.writeFile(dataFile, JSON.stringify(state))
+	}
 })()

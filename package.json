@@ -12,6 +12,11 @@
       "pre-commit": "pretty-quick --staged --pattern \"**/*.*(js|jsx)\""
     }
   },
+  "nodemonConfig": {
+    "ignore": [
+      "data/*"
+    ]
+  },
   "author": "",
   "license": "MIT",
   "dependencies": {

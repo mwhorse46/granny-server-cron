@@ -15,6 +15,6 @@ RUN npm install --production
 
 COPY --chown=node:node . .
 
-RUN git submodule update --init
+RUN ls -la && git submodule update --init
 
 CMD [ "npm", "start" ]

@@ -8,7 +8,6 @@ module.exports = function(options, {scriptName, run}) {
 		run(scriptName, calculate)
 	});
 
-	calculate()
 	async function calculate() {
 		var [err, domains] = await __.to(mongo.Image.aggregate([
 			{

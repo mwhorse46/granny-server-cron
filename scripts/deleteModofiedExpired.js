@@ -31,7 +31,12 @@ module.exports = function(options, {scriptName, run}) {
 
 		log.info(prefix, 'images_to_delete', images.length)
 		await __.asyncForEach(images, async (image) => {
-			var [err] = await __.to( minio.removeObject(image.domain, `${image.s3_folder}/${image.refChildren.s3_file}`) )
+			let domain = await mongo.Domain.findOne({ domain: image.domain }).exec()
+			if(!domain) return log.error(prefix, 'no_domain');
+
+			let minio = getMinio(domain.s3)
+			
+			var [err] = await __.to( minio.removeObject(domain.s3.bucket, `${image.s3_folder}/${image.refChildren.s3_file}`) )
 			if(err) return log.error(prefix, 'minio.err', err.message)
 
 			var [err, result] = await __.to( mongo.Image.updateOne({

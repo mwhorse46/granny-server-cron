@@ -12,23 +12,8 @@
 	/* Config from env */
 	const config = {
 		DEBUG: process.env.DEBUG || false,
-		MONGO: process.env.MONGO || 'mongodb://localhost/js_cdn',
-
-		S3_HOST: process.env.S3_HOST || '127.0.0.1',
-		S3_PORT: process.env.S3_PORT || 9000,
+		MONGO: process.env.MONGO || 'mongodb://localhost/js_cdn'
 	};
-
-	if (process.env.S3_ACCESS_KEY) config.S3_ACCESS_KEY = process.env.S3_ACCESS_KEY;
-	else if (process.env.S3_ACCESS_KEY_FILE)
-		config.S3_ACCESS_KEY = (await fs.readFile('/run/secrets/' + process.env.S3_ACCESS_KEY_FILE)).toString();
-	else config.S3_ACCESS_KEY = 'minioadmin';
-
-	if (process.env.S3_ACCESS_SECRET) config.S3_ACCESS_SECRET = process.env.S3_ACCESS_SECRET;
-	else if (process.env.S3_ACCESS_SECRET_FILE)
-		config.S3_ACCESS_SECRET = (
-			await fs.readFile('/run/secrets/' + process.env.S3_ACCESS_SECRET_FILE)
-		).toString();
-	else config.S3_ACCESS_SECRET = 'minioadmin';
 
 	/* Logger */
 	const log = require(__.path('utils/log'))({
@@ -42,14 +27,9 @@
 
 	/* Minio server */
 	const Minio = require('minio');
-
-	const minio = new Minio.Client({
-		endPoint: config.S3_HOST,
-		port: config.S3_PORT,
-		useSSL: false,
-		accessKey: config.S3_ACCESS_KEY,
-		secretKey: config.S3_ACCESS_SECRET,
-	});
+	function getMinio({endPoint, accessKey, secretKey, port = false, useSSL = true}) {
+		return new Minio.Client({endPoint, accessKey, secretKey, port, useSSL})
+	}
 
 	/* Mongo */
 	const mongo = await require(__.path('granny-server-backend/src/mongo/_load'))(initModules);
@@ -57,7 +37,7 @@
 	let dataFile = __.path('data/stats.json')
 	let initStats =  await getState(dataFile)
 
-	_.assign(initModules, { mongo, minio, initStats });
+	_.assign(initModules, { mongo, getMinio, initStats });
 
 	/* Script modules */
 	let stats = await require(__.path('scripts/_load'))(initModules);

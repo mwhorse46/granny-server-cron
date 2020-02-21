@@ -1,5 +1,5 @@
 module.exports = function(options, {scriptName, run}) {
-	let { __, cron, log, config, mongo, getMinio } = options;
+	let { __, cron, log, config, mongo } = options;
 
 	let prefix = `RUN.${scriptName}`
 	let schedule = config.DEBUG ? '*/10 * * * * *' : '*/10 * * * *'

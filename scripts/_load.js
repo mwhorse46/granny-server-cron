@@ -12,8 +12,7 @@ module.exports = async function(options) {
 
 		let runStats = {}
 
-		let prefix = `RUN.${scriptName}`
-		log.info(prefix, 'start');
+		log.info(`START.${scriptName}`);
 
 		runStats.tsStart = new Date().getTime()/1000
 		try {
@@ -27,7 +26,7 @@ module.exports = async function(options) {
 		stats[scriptName].lastRun = runStats
 		stats[scriptName].runs.fixedPush(runStats, 10)
 
-		log.info(prefix, 'finished', `+${runStats.duration} seconds`);
+		log.info(`FINISH.${scriptName}`, `+${runStats.duration} seconds`);
 	}
 
 	//load modules dynamicaly

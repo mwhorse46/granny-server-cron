@@ -28,7 +28,7 @@ function log(options) {
 
 		let args = Array.from(arguments)
 		
-		let prefixes = [this._ts(), 'DEBUG |']
+		let prefixes = ['\x1b[35m%s', this._ts(), 'DEBUG |', '\x1b[0m']
 		if(this.options.prefix) prefixes.push(this.options.prefix)
 		args.unshift(...prefixes)
 
@@ -40,7 +40,7 @@ function log(options) {
 
 		let args = Array.from(arguments)
 		
-		let prefixes = [this._ts(), 'INFO |']
+		let prefixes = ['\x1b[34m%s', this._ts(), 'INFO |', '\x1b[0m']
 		if(this.options.prefix) prefixes.push(this.options.prefix)
 		args.unshift(...prefixes)
 
@@ -52,7 +52,7 @@ function log(options) {
 
 		let args = Array.from(arguments)
 		
-		let prefixes = [this._ts(), 'WARN |']
+		let prefixes = ['\x1b[33m%s', this._ts(), 'WARN |', '\x1b[0m']
 		if(this.options.prefix) prefixes.push(this.options.prefix)
 		args.unshift(...prefixes)
 
@@ -64,7 +64,7 @@ function log(options) {
 
 		let args = Array.from(arguments)
 		
-		let prefixes = [this._ts(), 'ERROR |']
+		let prefixes = ['\x1b[31m%s', this._ts(), 'ERROR |', '\x1b[0m']
 		if(this.options.prefix) prefixes.push(this.options.prefix)
 		args.unshift(...prefixes)
 

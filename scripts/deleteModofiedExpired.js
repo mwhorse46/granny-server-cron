@@ -49,6 +49,7 @@ module.exports = function(options, {scriptName, run}) {
 				}
 			}) )
 			if(err) return log.error(prefix, 'mongo.delete.err', err.message)
+			log.debug(prefix, 'images_delete_result', image._id, result)
 		})
 	}
 };

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env DEBUG=1 nodemon ./index.js",
-    "start": "node ./index.js"
+    "start": "node ./index.js",
+    "submodule": "git submodule foreach git pull origin master"
   },
   "husky": {
     "hooks": {

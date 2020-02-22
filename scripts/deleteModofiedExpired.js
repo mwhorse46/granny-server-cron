@@ -1,5 +1,5 @@
 module.exports = function(options, {scriptName, run}) {
-	let { __, cron, log, config, mongo, minio } = options;
+	let { __, cron, log, config, mongo, getMinio } = options;
 
 	let prefix = `RUN.${scriptName}`
 	let schedule = config.DEBUG ? '*/10 * * * * *' : '*/2 * * * *'
@@ -30,6 +30,7 @@ module.exports = function(options, {scriptName, run}) {
 		if(err) return log.error(prefix, 'mongo.select.err', err.message)
 
 		log.info(prefix, 'images_to_delete', images.length)
+	
 		await __.asyncForEach(images, async (image) => {
 			let domain = await mongo.Domain.findOne({ domain: image.domain }).exec()
 			if(!domain) return log.error(prefix, 'no_domain');
